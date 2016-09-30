@@ -1,0 +1,38 @@
+delete from jireportunitresource where resource_id in (select id from jifileresource where id in (select id from jiresource where parent_folder in (select id from jiresourcefolder where uri like '/temp/%')))
+returning 'a' as Done;
+
+delete from jiadhocdataviewresource where resource_id in (select id from jifileresource where id in (select id from jiresource where parent_folder in (select id from jiresourcefolder where uri like '/temp/%')))
+returning 'a' as Done;
+
+delete from jidatadefinerunit where id in (select id from jireportunit where mainreport in (select id from jifileresource where id in (select id from jiresource where parent_folder in (select id from jiresourcefolder where uri like '/temp/%'))))
+returning 'a' as Done;
+
+delete from jireportunit where mainreport in (select id from jifileresource where id in (select id from jiresource where parent_folder in (select id from jiresourcefolder where uri like '/temp/%')))
+returning 'a' as Done;
+
+delete from jifileresource where id in (select id from jiresource where parent_folder in (select id from jiresourcefolder where uri like '/temp/%'))
+returning 'a' as Done;
+--
+delete from jiadhocdataviewinputcontrol where input_control_id in (select id from  jiinputcontrol where id in (select id from jiresource where parent_folder in (select id from jiresourcefolder where uri like '/temp/%')))
+returning 'a' as Done;
+
+delete from jiinputcontrolquerycolumn where input_control_id in (select id from  jiinputcontrol where id in (select id from jiresource where parent_folder in (select id from jiresourcefolder where uri like '/temp/%')))
+returning 'a' as Done;
+
+delete from jiinputcontrol where id in (select id from jiresource where parent_folder in (select id from jiresourcefolder where uri like '/temp/%'))
+returning 'a' as Done;
+
+delete from jiquery where id in (select id from jiresource where parent_folder in (select id from jiresourcefolder where uri like '/temp/%'))
+returning 'a' as Done;
+
+delete from jiresource where parent_folder in (select id from jiresourcefolder where uri like '/temp/%')
+returning 'a' as Done;
+
+delete from jiadhocdataview where id in (select id from jiresource where childrenfolder in (select id  from jiresourcefolder where uri like '/temp/%'))
+returning 'a' as Done;
+
+delete from jiresource where childrenfolder in (select id  from jiresourcefolder where uri like '/temp/%')
+returning 'a' as Done;
+
+delete  from jiresourcefolder where uri like '/temp/%'
+returning 'a' as Done;
